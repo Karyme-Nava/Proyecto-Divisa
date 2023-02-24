@@ -208,7 +208,7 @@ abstract class DivisaDatabase: RoomDatabase() {
 
     companion object{
         @Volatile
-        private var instance: DivisaDatabase?= null
+        private var INSTANCE: DivisaDatabase?= null
 
         val databaseexecutor :
                 ExecutorService =

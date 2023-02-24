@@ -10,7 +10,6 @@ import java.util.concurrent.Flow
 
 @Dao
 interface MonedaDAO {
-
     @Insert
     suspend fun insertar(moneda: Moneda)
 
@@ -22,5 +21,4 @@ interface MonedaDAO {
 
     @Query("select ID, codigo, nombre, pais from Moneda")
     fun getAllCursor(): Cursor
-
 }

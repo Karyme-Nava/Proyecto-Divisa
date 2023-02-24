@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity (tableName = "Divisa")
 public data class Divisa(
@@ -18,9 +17,9 @@ public data class Divisa(
         @ColumnInfo(name = "conversion")
         var conversion: Double,
         @ColumnInfo(name = "fecha")
-        var fecha: Date){
+        var fecha: String){
 
     @Ignore
     constructor() :
-            this(0,"","",0.0,Date(0))
+            this(0,"","",0.0,"")
 }
