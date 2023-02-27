@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.example.proyecto_divisa"
+            android:name=".provider.ProveedorDeContenido"
+            android:enabled="true"
+            android:exported="true"
+            />
     </application>
 
 </manifest>

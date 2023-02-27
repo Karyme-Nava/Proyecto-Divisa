@@ -33,7 +33,7 @@ abstract class DivisaDatabase: RoomDatabase() {
                     var monedaDao = database.getMonedaDao()
 
                     // Delete all content here.
-                    monedaDao.deleteAll()
+                    monedaDao.eliminarTodas()
 
                     // Add sample words.
                     //val modenada1 = Moneda(0,"","", "")

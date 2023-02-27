@@ -4,21 +4,26 @@ import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.RoomWarnings
+import androidx.room.Update
 import com.example.proyecto_divisa.model.Moneda
-import java.util.concurrent.Flow
 
 @Dao
 interface MonedaDAO {
     @Insert
-    suspend fun insertar(moneda: Moneda)
+    suspend fun insertar(moneda: Moneda) : Int
+
+    @Update
+    suspend fun actualizar(moneda: Moneda) : Int
+
+    @Query("delete from Moneda WHERE ID = :id")
+    suspend fun eliminar(id: Int) : Int
+
+    @Query("delete from Moneda")
+    suspend fun eliminarTodas() : Int
+
+    @Query("select * from Moneda WHERE ID = :id")
+    fun obtenerCursor(id: Int): Cursor
 
     @Query("select * from Moneda")
-    fun getAll(): kotlinx.coroutines.flow.Flow<List<Moneda>>
-
-    @Query("DELETE FROM Moneda")
-    suspend fun deleteAll() : Int
-
-    @Query("select ID, codigo, nombre, pais from Moneda")
-    fun getAllCursor(): Cursor
+    fun obtenerTodasCursor(): Cursor
 }
