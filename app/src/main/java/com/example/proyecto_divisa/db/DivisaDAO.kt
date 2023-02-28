@@ -18,13 +18,13 @@ interface DivisaDAO {
     @Update
     suspend fun actualizar(divisa: Divisa) : Int
 
-    @Query("delete from Divisa WHERE ID = :id")
+    @Query("delete from Divisa WHERE _ID = :id")
     suspend fun eliminar(id: Int) : Int
 
     @Query("delete from Divisa")
     suspend fun eliminarTodas() : Int
 
-    @Query("select * from Divisa WHERE ID = :id")
+    @Query("select * from Divisa WHERE _ID = :id")
     fun obtenerCursor(id: Int): Cursor
 
     @Query("select * from Divisa")

@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import androidx.room.Room
 import com.example.proyecto_divisa.Aplicacion
 import com.example.proyecto_divisa.db.DivisaDatabase
 import com.example.proyecto_divisa.model.Divisa
@@ -20,7 +21,7 @@ private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
 class ProveedorDeContenido : ContentProvider() {
     lateinit var bd : DivisaDatabase
     override fun onCreate(): Boolean {
-        bd = (context as Aplicacion).database
+        bd = Room.databaseBuilder((context as Aplicacion), DivisaDatabase::class.java, "bddivisa").build()
         return true
     }
 
@@ -74,7 +75,7 @@ class ProveedorDeContenido : ContentProvider() {
 
     fun convertir(valores: ContentValues?): Divisa{
         val d = Divisa()
-        d.ID = valores!!.getAsInteger("ID")
+        d.ID = valores!!.getAsInteger("_ID")
         d.monedaBase = valores!!.getAsString("monedaBase")
         d.monedaDestino = valores!!.getAsString("monedaDestino")
         d.conversion = valores!!.getAsDouble("conversion")

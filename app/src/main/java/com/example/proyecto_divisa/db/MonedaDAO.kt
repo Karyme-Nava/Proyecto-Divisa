@@ -15,13 +15,13 @@ interface MonedaDAO {
     @Update
     suspend fun actualizar(moneda: Moneda) : Int
 
-    @Query("delete from Moneda WHERE ID = :id")
+    @Query("delete from Moneda WHERE _ID = :id")
     suspend fun eliminar(id: Int) : Int
 
     @Query("delete from Moneda")
     suspend fun eliminarTodas() : Int
 
-    @Query("select * from Moneda WHERE ID = :id")
+    @Query("select * from Moneda WHERE _ID = :id")
     fun obtenerCursor(id: Int): Cursor
 
     @Query("select * from Moneda")
