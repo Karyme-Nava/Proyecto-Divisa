@@ -52,7 +52,7 @@ class ProveedorDeContenido : ContentProvider() {
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         var d = convertir(values)
-        GlobalScope.launch { d.ID = bd.getDivisaDAO().insertar(d) }
+        GlobalScope.launch { d.ID = bd.getDivisaDAO().insertar(d).toInt() }
         return Uri.parse("com.example.proyecto_divisa/divisa/${d.ID}")
     }
 

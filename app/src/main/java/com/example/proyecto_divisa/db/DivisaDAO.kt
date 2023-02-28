@@ -13,7 +13,7 @@ import java.util.concurrent.Flow
 @Dao
 interface DivisaDAO {
     @Insert
-    suspend fun insertar(divisa: Divisa) : Int
+    suspend fun insertar(divisa: Divisa) : Long
 
     @Update
     suspend fun actualizar(divisa: Divisa) : Int

@@ -10,7 +10,7 @@ import com.example.proyecto_divisa.model.Moneda
 @Dao
 interface MonedaDAO {
     @Insert
-    suspend fun insertar(moneda: Moneda) : Int
+    suspend fun insertar(moneda: Moneda) : Long
 
     @Update
     suspend fun actualizar(moneda: Moneda) : Int

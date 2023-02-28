@@ -218,7 +218,7 @@ abstract class DivisaDatabase: RoomDatabase() {
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context, DivisaDatabase::class.java,
-                    "midbmonedas"
+                    "bddivisa"
                 ).addCallback(MiDbMonedasCallback(scope))
                     .build()
                 INSTANCE = instance
