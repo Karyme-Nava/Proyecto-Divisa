@@ -10,18 +10,18 @@ import com.example.proyecto_divisa.model.Moneda
 @Dao
 interface MonedaDAO {
     @Insert
-    suspend fun insertar(moneda: Moneda) : Int
+    suspend fun insertar(moneda: Moneda) : Long
 
     @Update
     suspend fun actualizar(moneda: Moneda) : Int
 
-    @Query("delete from Moneda WHERE ID = :id")
+    @Query("delete from Moneda WHERE _ID = :id")
     suspend fun eliminar(id: Int) : Int
 
     @Query("delete from Moneda")
     suspend fun eliminarTodas() : Int
 
-    @Query("select * from Moneda WHERE ID = :id")
+    @Query("select * from Moneda WHERE _ID = :id")
     fun obtenerCursor(id: Int): Cursor
 
     @Query("select * from Moneda")

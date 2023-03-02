@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity (tableName = "Moneda")
 public data class Moneda(
         @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "ID")
+        @ColumnInfo(name = "_ID")
         var ID: Int,
         @ColumnInfo(name = "codigo")
         var codigo: String,

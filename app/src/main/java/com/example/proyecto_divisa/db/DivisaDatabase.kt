@@ -210,15 +210,11 @@ abstract class DivisaDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: DivisaDatabase?= null
 
-        val databaseexecutor :
-                ExecutorService =
-            Executors.newFixedThreadPool(4)
-
         fun getDatabase(context: Context, scope: CoroutineScope): DivisaDatabase {
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context, DivisaDatabase::class.java,
-                    "midbmonedas"
+                    "bddivisa"
                 ).addCallback(MiDbMonedasCallback(scope))
                     .build()
                 INSTANCE = instance
