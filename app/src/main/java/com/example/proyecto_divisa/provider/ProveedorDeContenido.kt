@@ -21,7 +21,7 @@ private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
 class ProveedorDeContenido : ContentProvider() {
     lateinit var bd : DivisaDatabase
     override fun onCreate(): Boolean {
-        bd = Room.databaseBuilder((context as Aplicacion), DivisaDatabase::class.java, "bddivisa").build()
+        bd = (context as Aplicacion).database
         return true
     }
 
@@ -60,8 +60,8 @@ class ProveedorDeContenido : ContentProvider() {
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
         var num = 0
         when(uriMatcher.match(uri)){
-            1 -> GlobalScope.launch { num = bd.getDivisaDAO().eliminarTodas() }
-            2 -> GlobalScope.launch { num = bd.getDivisaDAO().eliminar(uri.lastPathSegment!!.toInt()) }
+            1 -> GlobalScope.launch { bd.getDivisaDAO().eliminarTodas() }
+            2 -> GlobalScope.launch { bd.getDivisaDAO().eliminar(uri.lastPathSegment!!.toInt()) }
             3 -> throw IllegalAccessException("URI desconocida ${uri}")
         }
         return num
