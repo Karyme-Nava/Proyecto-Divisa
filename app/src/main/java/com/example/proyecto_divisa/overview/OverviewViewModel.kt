@@ -16,11 +16,14 @@
 
 package com.example.proyecto_divisa.overview
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.proyecto_divisa.network.ExchangeApi
+
+import com.example.proyecto_divisa.network.exchangeRateApiService
 import kotlinx.coroutines.launch
 
 /**
@@ -37,18 +40,20 @@ class OverviewViewModel : ViewModel() {
      * Call getMarsPhotos() on init so we can display status immediately.
      */
     init {
-        getMarsPhotos()
+        getExchangeDivisa()
     }
 
     /**
      * Gets Mars photos information from the Mars API Retrofit service and updates the
      * [MarsPhoto] [List] [LiveData].
      */
-    private fun getMarsPhotos() {
+    private fun getExchangeDivisa() {
         viewModelScope.launch {
             try {
-                val listResult = ExchangeApi.retrofitService.getPhotos()
-                _status.value = listResult
+                val response = exchangeRateApiService.getExchangeRates("USD/")
+                _status.value = "Success: ${response.conversionRates?.entries} Exchange divisas retrieved"
+
+                response.conversionRates?.get("CAD")?.let { Log.d(TAG, "La tasa de cambio de CAD es: $it") }
             }catch (e:Exception){
                 _status.value = "Failure: ${e.message}"
             }
