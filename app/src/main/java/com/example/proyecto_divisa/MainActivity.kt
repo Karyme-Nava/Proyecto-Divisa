@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.UNMETERED) //TODO: Revisar si es el tipo adecuado
             .build()
