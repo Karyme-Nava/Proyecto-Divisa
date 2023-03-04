@@ -10,6 +10,8 @@ import com.example.proyecto_divisa.Aplicacion
 import com.example.proyecto_divisa.db.DivisaDatabase
 import com.example.proyecto_divisa.model.Divisa
 import java.time.LocalDateTime
+import com.example.proyecto_divisa.network.exchangeRateApiService
+import android.content.ContentValues.TAG
 
 class InsertarDivisaWorker(appContext: Context, workerParams: WorkerParameters):
     CoroutineWorker(appContext, workerParams) {
@@ -18,10 +20,15 @@ class InsertarDivisaWorker(appContext: Context, workerParams: WorkerParameters):
     override suspend fun doWork(): Result{
         return try {
             bd = (applicationContext as Aplicacion).database
-            /*FOR*/
-            var d = Divisa(0, "USD", "MXN", 18.1, LocalDateTime.now().toString())
-            bd.getDivisaDAO().insertar(d)
-            /*FOR*/
+
+            val response = exchangeRateApiService.getExchangeRates("USD/")
+
+            response.conversionRates?.forEach { (key, value) ->
+              var d = Divisa(0, "USD", "$key", value, LocalDateTime.now().toString())
+                bd.getDivisaDAO().insertar(d)
+            }
+
+
             Result.success()
         } catch (throwable: Throwable) {
             Log.e("", "Error al insertar")

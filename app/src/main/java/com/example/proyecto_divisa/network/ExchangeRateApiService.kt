@@ -12,10 +12,6 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-
-private const val BASE_URL =
-    "https://v6.exchangerate-api.com/v6/ebf3ae0c3d9a5670e4381e6d/"
-
 private val retrofit = Retrofit.Builder()
     .baseUrl("https://v6.exchangerate-api.com/v6/ebf3ae0c3d9a5670e4381e6d/")
     .addConverterFactory(MoshiConverterFactory.create(moshi))
