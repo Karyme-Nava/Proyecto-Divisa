@@ -25,7 +25,10 @@ interface DivisaDAO {
     suspend fun eliminarTodas() : Int
 
     @Query("select * from Divisa WHERE _ID = :id")
-    fun obtenerCursor(id: Int): Cursor
+    fun obtenerCursorID(id: Int): Cursor
+
+    @Query("select * from Divisa WHERE monedaDestino = :codigo")
+    fun obtenerCursorCodigo(codigo: String): Cursor
 
     @Query("select * from Divisa")
     fun obtenerTodasCursor(): Cursor

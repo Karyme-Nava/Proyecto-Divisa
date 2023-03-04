@@ -25,7 +25,7 @@ class InsertarDivisaWorker(appContext: Context, workerParams: WorkerParameters):
 
             response.conversionRates?.forEach { (key, value) ->
               var d = Divisa(0, "USD", "$key", value, LocalDateTime.now().toString())
-                bd.getDivisaDAO().insertar(d)
+                bd.getDivisaDao().insertar(d)
             }
 
 

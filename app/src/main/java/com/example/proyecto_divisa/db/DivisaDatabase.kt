@@ -21,7 +21,7 @@ import java.util.concurrent.Executors
 abstract class DivisaDatabase: RoomDatabase() {
     abstract fun getMonedaDao(): MonedaDAO
 
-    abstract fun getDivisaDAO(): DivisaDAO
+    abstract fun getDivisaDao(): DivisaDAO
 
     private class MiDbMonedasCallback( private val scope: CoroutineScope)
         : RoomDatabase.Callback(){
