@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.UNMETERED) //TODO: Revisar si es el tipo adecuado
+            .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
         val workRequest =
