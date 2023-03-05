@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val workRequest =
-            PeriodicWorkRequestBuilder<InsertarDivisaWorker>(20, TimeUnit.MINUTES)
+            PeriodicWorkRequestBuilder<InsertarDivisaWorker>(24, TimeUnit.HOURS)
                 .setConstraints(constraints)
                 .build()
 
